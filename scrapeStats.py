@@ -1,5 +1,6 @@
 import pandas as pd
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 file_names = [
     'statsTopScorers.csv',
@@ -10,7 +11,8 @@ file_names = [
     'statsTeamGoalsAgainstAvg.csv'
 ]
 
-with open('./data/raw_stats.html', 'r') as file:
+current_date = datetime.now().strftime("%m-%d")
+with open(f'./data/raw_stats_{current_date}.html', 'r') as file:
     html_content = file.read()
 
 soup = BeautifulSoup(html_content, 'html.parser')
@@ -23,8 +25,9 @@ for table, file_name in zip(tables, file_names):
         cols = row.find_all('td')
         if cols:
             rows.append([col.text.strip() for col in cols])
-
+    
     df = pd.DataFrame(rows, columns=headers)
-    csv_path = f'./data/{file_name}'
+    csv_path = f'./data/{file_name[:-4]}_{current_date}.csv'
     df.to_csv(csv_path, index=False)
     print(f'Data saved to {csv_path}.')
+
