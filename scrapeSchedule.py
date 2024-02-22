@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 current_date = datetime.now().strftime("%m-%d")
-html_file_name = f'./data/page_source_{current_date}.html'
+html_file_name = f'./data/raw_schedule_{current_date}.html'
 with open(html_file_name, 'r') as file:
     html_content = file.read()
 
