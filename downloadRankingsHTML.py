@@ -8,7 +8,6 @@ chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64
 
 driver = webdriver.Chrome(options=chrome_options)
 
-# driver.get("https://www.ncaa.com/rankings/basketball-men/d1/associated-press")
 driver.get("https://www.ncaa.com/rankings/lacrosse-men/d1/ncaa-mens-lacrosse-rpi")
 
 driver.implicitly_wait(5)
